@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="w-full">
-      <section className="flex justify-center w-full h-[100vh] px-5">
+      <section className="flex justify-center w-full h-[90vh] sm:h-[100vh] px-5">
         <div className="flex flex-col justify-center items-center gap-7 text-center">
           <div className="flex flex-col gap-5">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl ">Manage your content with ease</h1>
@@ -16,7 +16,7 @@ export default function Home() {
             </p>
           </div>
           <div className="flex gap-1">
-            <Link href="/blogs" variant={"default"} className="bg-gray-200 hover:bg-gray-400 px-4 text-black py-1 rounded-sm transition-all duration-200 delay-100">Try it Out !</Link>
+            <Link href="/sign-in" variant={"default"} className="bg-gray-200 hover:bg-gray-400 px-4 text-black py-1 rounded-sm transition-all duration-200 delay-100">Try it Out !</Link>
             <Button variant={"link"} className="px-6">Learn more</Button>
           </div>
         </div>
