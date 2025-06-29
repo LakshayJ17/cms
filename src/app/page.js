@@ -1,8 +1,9 @@
-import { Icons } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Layers, Pencil, Zap } from "lucide-react";
+import { Layers, Zap } from "lucide-react";
 import Link from "next/link";
+import { Icons } from "@/components/Icons";
+
 
 export default function Home() {
   return (
