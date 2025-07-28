@@ -1,16 +1,13 @@
 import { Anvil } from "lucide-react";
 import Link from "next/link";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import {DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuLabel,DropdownMenuSeparator,DropdownMenuTrigger} from "@/components/ui/dropdown-menu"
+import { getAuthSession } from "@/lib/auth";
+import Image from "next/image";
+import SignOut from "./signout";
 
-export default function Navbar() {
-    const auth = true
+
+export default async function Navbar() {
+    const session = await getAuthSession()
     const tempUser = {
         name : "Sam",
         username : "samcool"
@@ -20,8 +17,8 @@ export default function Navbar() {
             <Link href="/" className="flex gap-2">
                 <Anvil /> <span className="font-bold">BlogVerse</span>
             </Link>
-            {auth ? (
-                <UserModalComponent user={tempUser} />
+            {session ? (
+                <UserModalComponent user={session?.user} />
             ) : (
                 <Link href="/sign-in">Sign In</Link>
             )}
@@ -32,7 +29,7 @@ export default function Navbar() {
 const UserModalComponent = ({ user }) => {
     return <DropdownMenu>
         <DropdownMenuTrigger>
-            User
+            <Image className="rounded-full border-2 border-[greenyellow]" src={user.image} width={40} height={40} />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
             <DropdownMenuLabel>Hi, {user.name}</DropdownMenuLabel>
@@ -40,9 +37,9 @@ const UserModalComponent = ({ user }) => {
             <DropdownMenuItem>
                 <Link href={`/profile/${user.username}`}>Go to Profile</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
+            <DropdownMenuItem>
+                <SignOut />
+            </DropdownMenuItem>
         </DropdownMenuContent>
     </DropdownMenu>
 }

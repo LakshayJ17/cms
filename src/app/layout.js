@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/ui/app-sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 import { Poppins } from "next/font/google";
 import Navbar from "@/components/navbar";
 import AuthProvider from "@/components/providers/AuthProvider";

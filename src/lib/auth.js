@@ -1,6 +1,7 @@
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { prisma } from "@/lib/prisma"
+import { getServerSession } from "next-auth"
 
 
 export const authOptions = {
@@ -21,7 +22,7 @@ export const authOptions = {
         // Whenever any jwt is created or updated this function runs 
         async jwt({ token, user }) {
             if (user) {
-                const dbUser = prisma.user.findUnique({
+                const dbUser = await prisma.user.findUnique({
                     where: { email: user.email },
                     select: { id: true, email: true, username: true, image: true, role: true }
                 })
@@ -65,3 +66,5 @@ export const authOptions = {
         }
     }
 }
+
+export const getAuthSession= () => getServerSession(authOptions)
